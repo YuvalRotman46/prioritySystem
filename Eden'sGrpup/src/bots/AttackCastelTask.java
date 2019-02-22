@@ -1,6 +1,7 @@
 package bots;
 import elf_kingdom.*;
 
+
 public class AttackCastelTask implements Taskable {
 	private GameMannager game;
 	private MyElf elfWrapper;

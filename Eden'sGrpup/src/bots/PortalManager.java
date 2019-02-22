@@ -2,6 +2,7 @@ package bots;
 
 import elf_kingdom.Game;
 
+
 public class PortalManager {
 
     public enum side{

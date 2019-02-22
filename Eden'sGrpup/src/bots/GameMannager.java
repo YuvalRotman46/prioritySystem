@@ -1,6 +1,7 @@
 package bots;
 import elf_kingdom.*;
 
+
 public class GameMannager {
 	
 	public final Game game;

@@ -1,7 +1,7 @@
 package bots;
 /**
  * 
- * @author yuval @ gal
+ * @author yuval
  *
  */
 public interface Taskable extends Comparable<Taskable> {
