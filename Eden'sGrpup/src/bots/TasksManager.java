@@ -3,6 +3,7 @@ package bots;
 import java.util.*;
 import elf_kingdom.*;
 
+
 public class TasksManager {
 	public static final String MOTO = "המעז מנצח"; 
 	private GameMannager game;
