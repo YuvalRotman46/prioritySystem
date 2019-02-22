@@ -4,10 +4,10 @@ import java.util.*;
 import elf_kingdom.*;
 
 public class TasksManager {
-	public static final String MOTO = "! המעז מנצח"; 
+	public static final String MOTO = "המעז מנצח"; 
 	private GameMannager game;
 	// tasks => all the tasks priorityQueue , unExecutableTasks => tasks which not had executed, unRunableTasks => tasks which return false while execution
-	private PriorityQueue<Taskable> tasks, unExecuteableTasks, unRunableTasks; // the main queue
+	private PriorityQueue<Taskable> tasks/*the main queue*/, unExecuteableTasks, unRunableTasks; // the queue + trash queues
 	
 	public TasksManager(GameMannager game) {
 		tasks = new PriorityQueue<>();
@@ -17,7 +17,7 @@ public class TasksManager {
 		this.game = game;
 	}
 	
-	public void execute() {
+	public boolean execute() {
 		while(tasks.peek() != null) {
 			// start iteration
 			
@@ -34,6 +34,8 @@ public class TasksManager {
 			
 			// end iteration
 		}
+		
+		return this.tasks.size() == 0;
 	}
 	
 	public void initialQueue() {
@@ -54,6 +56,9 @@ public class TasksManager {
 	}
 
 	
-	
+	public boolean addTask(Taskable task) {
+		return this.tasks.offer(task);
+	}
 
+	
 }

@@ -19,18 +19,16 @@ public class AttackCreatureTask implements Taskable {
 	public boolean execute() {
 		// TODO Auto-generated method stub
 		/*
-		 * the had execute quesstion is still not solved
+		 * the had execute question is still not solved
 		 */
-		if(elfWrapper != null && elfWrapper.elf != null && elfWrapper.isActive()) {
+		if(elfWrapper != null && elfWrapper.elf != null && elfWrapper.elf.alreadyActed == false) {
 			if(elfWrapper.elf.inAttackRange(enemyCreature)) {
 				elfWrapper.elf.attack(this.enemyCreature);
-				elfWrapper.disable();
 				this.hadExecute = true;
 				return true;
 			}
 			else {
 				elfWrapper.elf.moveTo(this.enemyCreature);
-				elfWrapper.disable();
 				// had execute ?
 				return true;
 			}

@@ -11,18 +11,9 @@ import elf_kingdom.*;
   */
 public class MyElf {
 	public Elf elf;
-	private boolean isActive;
 	
 	public MyElf(Elf elf) {
 		this.elf = elf;
-		this.isActive = true;
 	}
 
-	public boolean isActive() {
-		return isActive;
-	}
-	
-	public void disable() {
-		this.isActive = false;
-	}
 }

@@ -25,15 +25,13 @@ public class AttackCastelTask implements Taskable {
 		 */
 		
 		// TODO Auto-generated method stub
-		if(elfWrapper != null && elfWrapper.elf != null && elfWrapper.isActive()) {
+		if(elfWrapper != null && elfWrapper.elf != null && elfWrapper.elf.alreadyActed == false) {
 			if (elfWrapper.elf.inAttackRange(enemyCastel)) {
 				elfWrapper.elf.attack(enemyCastel);
-				elfWrapper.disable();
 				hadExecute = true;
 				return true;
 			}else {
 				elfWrapper.elf.moveTo(enemyCastel);
-				elfWrapper.disable();
 				return true;
 			}
 		}

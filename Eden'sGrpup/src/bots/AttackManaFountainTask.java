@@ -19,18 +19,15 @@ public class AttackManaFountainTask implements Taskable {
 	@Override
 	public boolean execute() {
 		// TODO Auto-generated method stub
-		if(elfWrapper != null && elfWrapper.elf != null && elfWrapper.isActive()) {
+		if(elfWrapper != null && elfWrapper.elf != null && elfWrapper.elf.alreadyActed == false) {
 			
 			if(elfWrapper.elf.inAttackRange(this.enemyManaFountain)) {
 				elfWrapper.elf.attack(this.enemyManaFountain);
-				elfWrapper.disable();
 				this.hadExecute = true;
 				return true;
 			}
 			else {
 				elfWrapper.elf.moveTo(this.enemyManaFountain);
-				elfWrapper.disable();
-				// had execute ?
 				return true;
 			}	
 		}

@@ -26,13 +26,12 @@ public class SummonPortalTask implements Taskable {
 		 * to set hadExecute to true ?
 		 */
 		
-		if (this.elfWrapper != null && this.elfWrapper.elf != null && this.elfWrapper.isActive()) {
+		if (this.elfWrapper != null && this.elfWrapper.elf != null && this.elfWrapper.elf.alreadyActed == false) {
 			if(this.elfWrapper.elf.getLocation().equals(portalLoction)) {
 				// in case that elf is in the summing location
 				if (elfWrapper.elf.canBuildPortal()) {
 					elfWrapper.elf.buildPortal();
 					this.hadExecute = true;
-					elfWrapper.disable();
 					return true;
 				}
 				else {
@@ -42,7 +41,6 @@ public class SummonPortalTask implements Taskable {
 			else {
 				// in case of elf is not in portal summing location
 				this.elfWrapper.elf.moveTo(portalLoction);
-				this.elfWrapper.disable();
 				return true;
 			}
 		}
