@@ -5,11 +5,11 @@ import elf_kingdom.*;
 
 public class SummonPortalTask implements Taskable {
 	private GameMannager game;
-	private MyElf elfWrapper;
+	private ElfWrapper elfWrapper;
 	private Location portalLoction;
 	private boolean hadExecute;
 	
-	public SummonPortalTask(GameMannager game, MyElf elfWrapper, Location portalLoction) {
+	public SummonPortalTask(GameMannager game, ElfWrapper elfWrapper, Location portalLoction) {
 		this.game = game;
 		this.elfWrapper = elfWrapper;
 		this.portalLoction = portalLoction;
@@ -51,6 +51,9 @@ public class SummonPortalTask implements Taskable {
 	@Override
 	public double getPriority() {
 		// TODO Auto-generated method stub
+		
+		
+		
 		return 0;
 	}
 	

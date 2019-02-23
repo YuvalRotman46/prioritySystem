@@ -4,13 +4,13 @@ import elf_kingdom.*;
 
 public class AttackCastelTask implements Taskable {
 	private GameMannager game;
-	private MyElf elfWrapper;
+	private ElfWrapper elfWrapper;
 	private Castle enemyCastel;
 	private boolean hadExecute ;
 	
 	
 	
-	public AttackCastelTask(GameMannager game, MyElf elfWrapper, Castle enemyCastel) {
+	public AttackCastelTask(GameMannager game, ElfWrapper elfWrapper, Castle enemyCastel) {
 		super();
 		this.game = game;
 		this.elfWrapper = elfWrapper;

@@ -10,11 +10,14 @@ import elf_kingdom.*;
   * @author yuval
   *
   */
-public class MyElf {
+public class ElfWrapper {
 	public Elf elf;
 	
-	public MyElf(Elf elf) {
+	public Roles role;
+	
+	public ElfWrapper(Elf elf) {
 		this.elf = elf;
+		role = Roles.NONE;
 	}
 
 }

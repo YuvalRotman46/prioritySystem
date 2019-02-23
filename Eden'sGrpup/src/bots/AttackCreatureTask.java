@@ -4,11 +4,11 @@ import elf_kingdom.*;
 
 public class AttackCreatureTask implements Taskable {
 	private GameMannager game;
-	private MyElf elfWrapper;
+	private ElfWrapper elfWrapper;
 	private Creature enemyCreature; // the enemy creature that we will attack
 	private boolean hadExecute;
 	
-	public AttackCreatureTask(GameMannager game, MyElf elfWrapper, Creature enemyCreature) {
+	public AttackCreatureTask(GameMannager game, ElfWrapper elfWrapper, Creature enemyCreature) {
 		super();
 		this.game = game;
 		this.elfWrapper = elfWrapper;

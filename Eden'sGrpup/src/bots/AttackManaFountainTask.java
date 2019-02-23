@@ -5,11 +5,11 @@ import elf_kingdom.*;
 
 public class AttackManaFountainTask implements Taskable {
 	private GameMannager game;
-	private MyElf elfWrapper;
+	private ElfWrapper elfWrapper;
 	private ManaFountain enemyManaFountain;
 	private boolean hadExecute;
 	
-	public AttackManaFountainTask(GameMannager game, MyElf elfWrapper, ManaFountain enemyManaFountain) {
+	public AttackManaFountainTask(GameMannager game, ElfWrapper elfWrapper, ManaFountain enemyManaFountain) {
 		super();
 		this.game = game;
 		this.elfWrapper = elfWrapper;

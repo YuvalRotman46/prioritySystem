@@ -61,5 +61,23 @@ public class TasksManager {
 		return this.tasks.offer(task);
 	}
 
+	public GameMannager getGame() {
+		return game;
+	}
+
+	public PriorityQueue<Taskable> getTasks() {
+		return tasks;
+	}
+
+	public PriorityQueue<Taskable> getUnExecuteableTasks() {
+		return unExecuteableTasks;
+	}
+
+	public PriorityQueue<Taskable> getUnRunableTasks() {
+		return unRunableTasks;
+	}
+
+	
+	
 	
 }
