@@ -1,5 +1,4 @@
 package bots;
-import java.util.*;
 import elf_kingdom.*;
 
 /**
@@ -13,7 +12,7 @@ import elf_kingdom.*;
  */
 public class PortalWrapper {
 	
-	public Portal portal;
+	public final Portal portal;
 	
 	public Roles role;
 
@@ -22,6 +21,22 @@ public class PortalWrapper {
 		this.portal = portal;
 		role = Roles.NONE;
 	}
+
+
+	public Roles getRole() {
+		return role;
+	}
+
+
+	public void setRole(Roles role) {
+		this.role = role;
+	}
+
+
+	public Portal getPortal() {
+		return portal;
+	}
+	
 	
 	
 
