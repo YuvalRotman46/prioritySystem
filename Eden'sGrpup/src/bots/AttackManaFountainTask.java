@@ -40,6 +40,9 @@ public class AttackManaFountainTask implements Taskable {
 	@Override
 	public double getPriority() {
 		// TODO Auto-generated method stub
+		double time = elfWrapper.elf.distance(this.enemyManaFountain) * elfWrapper.elf.maxSpeed + enemyManaFountain.currentHealth;
+		double mana = 0;
+		
 		return 0;
 	}
 	
