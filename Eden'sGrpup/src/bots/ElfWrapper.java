@@ -8,7 +8,7 @@ import elf_kingdom.*;
   *	It basically created for managing the elf activity and avoiding exception.
   * 
   * @author yuval
-  *	Gal was here bbf
+  *	Gal was here bb
   */
 public class ElfWrapper {
 	public final Elf elf;
