@@ -49,6 +49,7 @@ public class SummonManaFoundationTask implements Taskable {
 	@Override
 	public double getPriority() {
 		// TODO Auto-generated method stub
+		double time = (elfWrapper.elf.distance(manaFoundationLocation)*elfWrapper.elf.maxSpeed + game.game.manaFountainBuildingDuration)*-1; 
 		return 0;
 	}
 
