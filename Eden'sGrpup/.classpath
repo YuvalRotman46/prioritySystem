@@ -8,5 +8,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Skillz 2019/SkillzAutocomplete.jar"/>
 	<classpathentry kind="lib" path="D:/Skillz 2019/SkillzAutocomplete.jar"/>
+	<classpathentry kind="lib" path="/home/yuval/Documents/Skillz 2019/etgarim 2/SkillzAutocomplete.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

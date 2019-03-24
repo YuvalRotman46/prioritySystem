@@ -33,10 +33,10 @@ public class SummonTrollTask implements Taskable{
 
 	@Override
 	public double getPriority() {
-		double time = (this.game.game.iceTrollSummoningDuration)*-1;
-		double mana = (this.game.game.iceTrollCost)*-1;
+		double time = this.game.game.iceTrollSummoningDuration;
+		double mana = this.game.game.iceTrollCost;
 		
-		return time*0.6 + 0.4*mana;
+		return (time*-1)*Weights.TIME_WEIGHT + (mana-1)*Weights.MANA_WEIGHT;
 		
 	}
 	

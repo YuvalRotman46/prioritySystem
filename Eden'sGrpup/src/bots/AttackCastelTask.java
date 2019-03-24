@@ -42,7 +42,11 @@ public class AttackCastelTask implements Taskable {
 	@Override
 	public double getPriority() {
 		// TODO Auto-generated method stub
-		return 0;
+		double time = 0, mana = 0;
+		time = this.enemyCastel.getLocation().distance(this.elfWrapper.elf)/elfWrapper.getSpeed() + this.enemyCastel.currentHealth;
+		// Mana no change(not be used)
+		
+		return (time*-1)*Weights.TIME_WEIGHT + (mana*-1)*Weights.MANA_WEIGHT;
 	}
 	
 	public GameMannager getGame() {

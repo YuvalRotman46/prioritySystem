@@ -51,10 +51,10 @@ public class SummonPortalTask implements Taskable {
 	@Override
 	public double getPriority() {
 		// TODO Auto-generated method stub
-		double time = (elfWrapper.elf.distance(portalLoction)*elfWrapper.elf.maxHealth + game.game.manaFountainBuildingDuration)*-1;
-		double mana = game.game.portalCost * -1;
+		double time = elfWrapper.elf.distance(portalLoction)/elfWrapper.getSpeed() + game.game.manaFountainBuildingDuration;
+		double mana = game.game.portalCost;
 		
-		return time*0.6 + mana*0.4;
+		return (time*-1)*Weights.TIME_WEIGHT + (mana*-1)*Weights.MANA_WEIGHT;
 	}
 	
 	public GameMannager getGame() {
