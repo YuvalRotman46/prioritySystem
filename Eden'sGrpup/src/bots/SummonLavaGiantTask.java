@@ -28,13 +28,15 @@ public class SummonLavaGiantTask implements Taskable  {
 
 	@Override
 	public double getPriority() {
-		double time = (this.game.game.lavaGiantSummoningDuration)*-1;
-		double cost = (this.game.game.lavaGiantCost)*-1;
-	//	double dScore = 0; // will happend
-		double astrateg = 0;// group thinking
 		
-		double _final = time*0.3 + cost*0.2 + /*dScore*0.1+*/astrateg*0.4; // random priority
-		return _final;
+		if (portal.alreadyActed || portal.isSummoning) 
+			return Double.MIN_VALUE;
+		
+		double time = this.game.game.lavaGiantSummoningDuration;
+		double mana = this.game.game.lavaGiantCost;
+		
+		return (time*-1)*Weights.TIME_WEIGHT + (mana*-1)*Weights.MANA_WEIGHT;
+		
 	}
 	
 	public GameMannager getGame() {

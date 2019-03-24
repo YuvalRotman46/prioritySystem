@@ -8,24 +8,25 @@ public class TasksManager {
 	public static final String MOTO = "המעז מנצח"; 
 	private GameMannager game;
 	// tasks => all the tasks priorityQueue , unExecutableTasks => tasks which not had executed, unRunableTasks => tasks which return false while execution
-	private PriorityQueue<Taskable> tasks/*the main queue*/, unExecuteableTasks, unRunableTasks; // the queue + trash queues
+	private PriorityQueue<Taskable> tasks/*the main queue*/, isNotFinishedTasks, unRunableTasks; // the queue + trash queues
 	
 	public TasksManager(GameMannager game) {
 		tasks = new PriorityQueue<>();
-		unExecuteableTasks = new  PriorityQueue<>();
+		isNotFinishedTasks = new  PriorityQueue<>();
 		unRunableTasks = new PriorityQueue<>();
 		
 		this.game = game;
 	}
 	
 	public boolean execute() {
+		
 		while(tasks.peek() != null) {
 			// start iteration
 			
 			if(tasks.peek().execute()) {
 				Taskable task = (Taskable)tasks.poll();
 				if(task.isFinished() == false) {
-					unExecuteableTasks.offer(task);
+					isNotFinishedTasks.offer(task);
 				}
 			}else {
 				Taskable task = (Taskable)tasks.poll();
@@ -69,8 +70,8 @@ public class TasksManager {
 		return tasks;
 	}
 
-	public PriorityQueue<Taskable> getUnExecuteableTasks() {
-		return unExecuteableTasks;
+	public PriorityQueue<Taskable> getUnFinishedTasks() {
+		return isNotFinishedTasks;
 	}
 
 	public PriorityQueue<Taskable> getUnRunableTasks() {
