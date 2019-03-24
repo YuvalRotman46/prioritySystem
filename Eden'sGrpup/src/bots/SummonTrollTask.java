@@ -46,7 +46,7 @@ public class SummonTrollTask implements Taskable{
 
 	@Override
 	public boolean isFinished() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stu
 		return hadExecute;
 	}
 
