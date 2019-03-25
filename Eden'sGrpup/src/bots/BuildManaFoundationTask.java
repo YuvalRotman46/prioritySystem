@@ -6,13 +6,13 @@ import elf_kingdom.*;
  * @author Yuval Rotman
  *The mana foundation building task
  */
-public class SummonManaFoundationTask implements Taskable {
+public class BuildManaFoundationTask implements Taskable {
 	private GameMannager game;
 	private ElfWrapper elfWrapper;
 	private Location manaFoundationLocation;
 	private boolean hadExceute;
 	
-	public SummonManaFoundationTask(GameMannager game, ElfWrapper elfWrapper, Location manaFoundationLocation) {
+	public BuildManaFoundationTask(GameMannager game, ElfWrapper elfWrapper, Location manaFoundationLocation) {
 		this.game = game;
 		this.elfWrapper = elfWrapper;
 		this.manaFoundationLocation = manaFoundationLocation;

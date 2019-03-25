@@ -3,13 +3,13 @@ package bots;
 import elf_kingdom.*;
 
 
-public class SummonPortalTask implements Taskable {
+public class BuildPortalTask implements Taskable {
 	private GameMannager game;
 	private ElfWrapper elfWrapper;
 	private Location portalLoction;
 	private boolean hadExecute;
 	
-	public SummonPortalTask(GameMannager game, ElfWrapper elfWrapper, Location portalLoction) {
+	public BuildPortalTask(GameMannager game, ElfWrapper elfWrapper, Location portalLoction) {
 		this.game = game;
 		this.elfWrapper = elfWrapper;
 		this.portalLoction = portalLoction;

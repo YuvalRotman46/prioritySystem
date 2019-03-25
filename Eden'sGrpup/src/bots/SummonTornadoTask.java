@@ -4,10 +4,10 @@ import elf_kingdom.*;
 
 public class SummonTornadoTask implements Taskable{
 	private GameMannager game;
-	private Portal portal;
+	private PortalWrapper portal;
 	private boolean hadExecute;
 	
-	public SummonTornadoTask(GameMannager game, Portal portal) {
+	public SummonTornadoTask(GameMannager game, PortalWrapper portal) {
 		this.game = game;
 		this.portal = portal;
 		this.hadExecute = false;
@@ -34,8 +34,8 @@ public class SummonTornadoTask implements Taskable{
 	
 	@Override
 	public boolean execute() {
-		if(this.portal.canSummonTornado()){
-		    this.portal.summonTornado();
+		if(this.portal.portal.canSummonTornado()){
+		    this.portal.portal.summonTornado();
 		    this.hadExecute=true;
 		    return true;
 		}
@@ -46,7 +46,7 @@ public class SummonTornadoTask implements Taskable{
 	@Override
 	public double getPriority() {
 		
-		if (portal.alreadyActed || portal.isSummoning) 
+		if (portal.portal.alreadyActed || portal.portal.isSummoning) 
 			return Double.MIN_VALUE;
 		
 		double time = this.game.game.tornadoSummoningDuration;

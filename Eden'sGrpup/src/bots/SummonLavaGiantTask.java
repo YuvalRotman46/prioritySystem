@@ -4,12 +4,12 @@ import elf_kingdom.*;
 
 public class SummonLavaGiantTask implements Taskable  {
 	private GameMannager game;
-	private Portal portal;
+	private PortalWrapper portal;
 	private boolean hadExecute;
 	
 	
 
-	public SummonLavaGiantTask(GameMannager game, Portal portal) {
+	public SummonLavaGiantTask(GameMannager game, PortalWrapper portal) {
 		this.game = game;
 		this.portal = portal;
 		this.hadExecute = false;
@@ -17,8 +17,8 @@ public class SummonLavaGiantTask implements Taskable  {
 
 	@Override
 	public boolean execute() {
-		if(this.portal.canSummonLavaGiant()){
-		    this.portal.summonLavaGiant();
+		if(this.portal.portal.canSummonLavaGiant()){
+		    this.portal.portal.summonLavaGiant();
 		    this.hadExecute=true;
 		    return true;
 		}
@@ -29,7 +29,7 @@ public class SummonLavaGiantTask implements Taskable  {
 	@Override
 	public double getPriority() {
 		
-		if (portal.alreadyActed || portal.isSummoning) 
+		if (portal.portal.alreadyActed || portal.portal.isSummoning) 
 			return Double.MIN_VALUE;
 		
 		double time = this.game.game.lavaGiantSummoningDuration;
@@ -62,17 +62,17 @@ public class SummonLavaGiantTask implements Taskable  {
 	}
 	
 	public int howManyIceTrollsInCriticCircle() {
-		int halfDist = (portal.distance(game.game.getEnemyCastle()))/2;
-		Location theLoc = portal.location.towards(game.game.getEnemyCastle(), halfDist);
+		int halfDist = (portal.portal.distance(game.game.getEnemyCastle()))/2;
+		Location theLoc = portal.portal.location.towards(game.game.getEnemyCastle(), halfDist);
 		return SkillzLib.howManyObjectsAroundLocation(game.game, theLoc, game.game.getEnemyIceTrolls(), halfDist);
 	}
 	
 	public double getSummonLavaGiantPriority() {
-		if (portal.alreadyActed || portal.isSummoning) 
+		if (portal.portal.alreadyActed || portal.portal.isSummoning) 
 			return Double.MIN_VALUE;
 		
 		double criticEnemies = this.howManyIceTrollsInCriticCircle();
-		double dist = portal.distance(game.game.getEnemyCastle());
+		double dist = portal.portal.distance(game.game.getEnemyCastle());
 		
 		return (criticEnemies*-1)*Weights.CRITIC_CIRCLE_WEIGHT + (dist*-1)*Weights.DIST_WEIGHT;
 		
