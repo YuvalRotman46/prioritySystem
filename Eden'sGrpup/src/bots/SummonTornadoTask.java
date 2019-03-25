@@ -1,6 +1,6 @@
 package bots;
 
-import elf_kingdom.Portal;
+import elf_kingdom.*;
 
 public class SummonTornadoTask implements Taskable{
 	private GameMannager game;
