@@ -60,16 +60,37 @@ public class SummonLavaGiantTask implements Taskable  {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public int howManyIceTrollsInCriticCircle() {
+		int halfDist = (portal.distance(game.game.getEnemyCastle()))/2;
+		Location theLoc = portal.location.towards(game.game.getEnemyCastle(), halfDist);
+		return SkillzLib.howManyObjectsAroundLocation(game.game, theLoc, game.game.getEnemyIceTrolls(), halfDist);
+	}
+	
+	public double getSummonLavaGiantPriority() {
+		if (portal.alreadyActed || portal.isSummoning) 
+			return Double.MIN_VALUE;
+		
+		double criticEnemies = this.howManyIceTrollsInCriticCircle();
+		double dist = portal.distance(game.game.getEnemyCastle());
+		
+		return (criticEnemies*-1)*Weights.CRITIC_CIRCLE_WEIGHT + (dist*-1)*Weights.DIST_WEIGHT;
+		
+		
+	}
 
-	/*@Override
-	public int compareTo(Taskable argT) {
-		if(this.getPriority() > argT.getPriority())
+	@Override
+	public int compareTo(Taskable arg) {
+		
+		if(arg instanceof SummonLavaGiantTask) {
+		if(this.getSummonLavaGiantPriority() > ((SummonLavaGiantTask)arg).getSummonLavaGiantPriority())
 			return -1;
-		else if(argT.getPriority() > this.getPriority())
+		else if(((SummonLavaGiantTask)arg).getSummonLavaGiantPriority() > this.getSummonLavaGiantPriority())
 			return 1;
 		else return 0;
 			
-	}*/ // it is already default in the interface taskable
+		}else return Taskable.super.compareTo(arg);
+	}
 	
-
+	
 }

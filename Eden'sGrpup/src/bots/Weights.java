@@ -12,5 +12,8 @@ public interface Weights {
 	public static final double TIME_WEIGHT = 0.4;
 	public static final double MANA_WEIGHT = 0.6;
 	
+	public static final double DIST_WEIGHT = 0.4; //weights for summonLavaGiant
+	public static final double CRITIC_CIRCLE_WEIGHT = 0.6;
+	
 	
 }
