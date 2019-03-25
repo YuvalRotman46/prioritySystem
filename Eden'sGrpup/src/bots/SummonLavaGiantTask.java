@@ -61,10 +61,22 @@ public class SummonLavaGiantTask implements Taskable  {
 		
 	}
 	
-	public int howManyIceTrollsInDangerZone() {
-		int halfDist = portal.distance(game.game.getEnemyCastle());
+	public int howManyIceTrollsInCriticCircle() {
+		int halfDist = (portal.distance(game.game.getEnemyCastle()))/2;
 		Location theLoc = portal.location.towards(game.game.getEnemyCastle(), halfDist);
 		return SkillzLib.howManyObjectsAroundLocation(game.game, theLoc, game.game.getEnemyIceTrolls(), halfDist);
+	}
+	
+	public double getSummonLavaGiantPriority() {
+		if (portal.alreadyActed || portal.isSummoning) 
+			return Double.MIN_VALUE;
+		
+		double criticEnemies = this.howManyIceTrollsInCriticCircle();
+		double dist = portal.distance(game.game.getEnemyCastle());
+		
+		return (criticEnemies*-1)*Weights.CRITIC_CIRCLE_WEIGHT + (dist*-1)*Weights.DIST_WEIGHT;
+		
+		
 	}
 
 	/*@Override
