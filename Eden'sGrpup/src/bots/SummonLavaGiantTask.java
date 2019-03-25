@@ -60,6 +60,12 @@ public class SummonLavaGiantTask implements Taskable  {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public int howManyIceTrollsInDangerZone() {
+		int halfDist = portal.distance(game.game.getEnemyCastle());
+		Location theLoc = portal.location.towards(game.game.getEnemyCastle(), halfDist);
+		return SkillzLib.howManyObjectsAroundLocation(game.game, theLoc, game.game.getEnemyIceTrolls(), halfDist);
+	}
 
 	/*@Override
 	public int compareTo(Taskable argT) {
