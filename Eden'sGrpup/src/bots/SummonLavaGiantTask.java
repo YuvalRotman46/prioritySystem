@@ -79,15 +79,18 @@ public class SummonLavaGiantTask implements Taskable  {
 		
 	}
 
-	/*@Override
-	public int compareTo(Taskable argT) {
-		if(this.getPriority() > argT.getPriority())
+	@Override
+	public int compareTo(Taskable arg) {
+		
+		if(arg instanceof SummonLavaGiantTask) {
+		if(this.getSummonLavaGiantPriority() > ((SummonLavaGiantTask)arg).getSummonLavaGiantPriority())
 			return -1;
-		else if(argT.getPriority() > this.getPriority())
+		else if(((SummonLavaGiantTask)arg).getSummonLavaGiantPriority() > this.getSummonLavaGiantPriority())
 			return 1;
 		else return 0;
 			
-	}*/ // it is already default in the interface taskable
+		}else return Taskable.super.compareTo(arg);
+	}
 	
-
+	
 }
