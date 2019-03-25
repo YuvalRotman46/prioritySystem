@@ -33,10 +33,10 @@ public interface Taskable extends Comparable<Taskable> {
 	public void invalidate();
 	
 	@Override
-	public default int compareTo(Taskable argT) {
-		if(this.getPriority() > argT.getPriority())
+	public default int compareTo(Taskable arg) {
+		if(this.getPriority() > arg.getPriority())
 			return -1;
-		else if(argT.getPriority() > this.getPriority())
+		else if(arg.getPriority() > this.getPriority())
 			return 1;
 		else return 0;
 			

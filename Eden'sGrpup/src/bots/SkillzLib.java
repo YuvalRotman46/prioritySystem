@@ -424,7 +424,79 @@ public class SkillzLib {
 		if(b == null || b.owner.equals(game.getMyself()) == false) return false;
 		else return true;
 	}
+	/**
+	 * 
+	 * @param c - a creature 
+	 * @return the closest portal if there is no any portal returns null.
+	 */
+	public static Portal getClosestPortalToCreature(Game game, Creature c) {
+		int min_dist = Integer.MAX_VALUE;
+		Portal min_dist_portal = null; // initial by null because you have to return something
+		for(Portal p : game.getMyPortals()) {
+			if(c.distance(p)< min_dist) {
+				min_dist_portal = p;
+				min_dist = c.distance(p);
+			}
+		}
+		
+		return min_dist_portal;
+		
+	}
 	
+	public static int getNumOfCreatureMostCloseToP(Game game, Portal p) {
+		int creatures = 0;
+		for (Creature c : game.getMyCreatures()) {
+			if (getClosestPortalToCreature(game, c).equals(p)) creatures++;
+		}
+		return creatures;
+		
+	}
 	
+	/**
+	 * 
+	 * @param game
+	 * @return the St for the ice trolls summoning
+	 */
+	public static int getSigmaDistsFromCastele(Game game) {
+		int sigmaDists = 0; // counter for the dists
+		for(GameObject enemyCreatcure : getEnemyElfsAndCreatures(game)) {
+			sigmaDists += enemyCreatcure.distance(game.getEnemyCastle());
+		}
+		return sigmaDists;
+	}
 	
+	/**
+	 * 
+	 * @param game
+	 * @param c
+	 * @return return the Ei for ice troll summoning
+	 */
+	public static double getEnemiesCreatureScore(Game game, GameObject c) {
+		return (getSigmaDistsFromCastele(game)-c.distance(game.getEnemyCastle()))/((double)getSigmaDistsFromCastele(game));
+		
+	}
+		
+	public static ArrayList<GameObject> getMyElfsAndCreatures(Game game){
+		ArrayList<GameObject> objects = new ArrayList<>();
+		for(Creature c : game.getMyCreatures()) {
+			objects.add(c);
+		}
+		for(Elf e : game.getMyLivingElves()) {
+			objects.add(e);
+		}
+		return objects;
+	}
+	
+	public static ArrayList<GameObject> getEnemyElfsAndCreatures(Game game){
+		ArrayList<GameObject> objects = new ArrayList<>();
+		for(Creature c : game.getEnemyCreatures()) {
+			objects.add(c);
+		}
+		for(Elf e : game.getEnemyLivingElves()) {
+			objects.add(e);
+		}
+		return objects;
+	}
+	
+
 }
