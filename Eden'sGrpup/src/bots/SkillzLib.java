@@ -535,5 +535,130 @@ public class SkillzLib {
 		}
 		return maxBuilding;
 	}
+	
+	/*
+	 * Below are the functions for portal attack and defend
+	 * 
+	 */
+	public static ArrayList<Location> getITsAndElves(Game game){
+        IceTroll[] its = game.getEnemyIceTrolls();
+        Elf[] elves = game.getEnemyLivingElves();
+        ArrayList<Location> locs = new ArrayList<>();
+        for(IceTroll it: its){
+            locs.add(it.getLocation());
+        }
+        for(Elf elf: elves){
+            locs.add(elf.getLocation());
+        }
+        return locs;
+    }
+    /*
+    public static ArrayList<Location> getAttackPortals(Game game){
+        ArrayList<Location> locs = new ArrayList<>();
+        int radius = ATTACK_PORTALS_RADIUS;
+        for(Portal p: game.getMyPortals()){
+            if(p.distance(game.getEnemyCastle()) < radius){
+                locs.add(p.getLocation());
+            }
+        }
+        return locs;
+    }
+    */
+    public static Portal attackFromThis(Game game) {
+        ArrayList<Location> enemies = getITsAndElves(game);
+        ArrayList<Location> myPortals = new ArrayList<>();
+        Castle myCastle = game.getMyCastle();
+        for(Portal p: game.getMyPortals()){
+            myPortals.add(p.getLocation());
+            //p.location = new Location(100, 100);
+        }
+        
+        double max = 0;
+        int index = -1;
+        for(int i = 0; i < myPortals.size(); i++){
+            if (attackingPortalWeight(myCastle, enemies, myPortals.get(i)) > max){
+                max = attackingPortalWeight(myCastle, enemies, myPortals.get(i));
+                System.out.println(max);
+                index = i;
+            }
+        } 
+    
+        double min = Double.MAX_VALUE;
+        int mindex = -1;
+        int countcloseness = 0;
+        for(int i = 0; i< myPortals.size(); i++){
+            for(int j = 0; j < enemies.size(); j++){
+                if(enemies.get(j).distance(myCastle) > myPortals.get(i).distance(myCastle)){
+                    countcloseness++;
+                }
+            }
+            if(countcloseness == 5){
+                if(myPortals.get(i).distance(myCastle) < min){
+                    min = myPortals.get(i).distance(myCastle);
+                    mindex = i;
+                }
+            }
+        }
+        if(mindex != -1){
+            index = mindex;
+        }
+        return game.getMyPortals()[index];
+    }
+    
+    public static double attackingPortalWeight(Castle myCastle, ArrayList<Location> enemies, Location p){
+        double sum = 0;
+        for (int i = 0; i < enemies.size(); i++) {
+            /*double wt = Math.pow(enemies.get(i).distance(myCastle), 2);
+            double wi = enemies.get(i).distance(p);
+            sum += 1/(wi*wt);
+            */
+            sum += (enemies.get(i).distance(p));
+        }
+        sum /=p.distance(myCastle);
+        return sum;
+    }
+    
+    public static ArrayList<Location> getLGsAndElves(Game game){
+        ArrayList<Location> locs = new ArrayList<>();
+        for(LavaGiant lg : game.getEnemyLavaGiants()){
+            locs.add(lg.getLocation());
+        }
+        for(Elf elf: game.getEnemyLivingElves()){
+            locs.add(elf.getLocation());
+        }
+        return locs;
+    }
+    
+    public static double defendingPortalWeight(Castle castle, ArrayList<Location> enemies, Location portal){
+        double sum = 0.0;
+        for(int i = 0; i < enemies.size(); i++){
+            double wt = Math.pow((enemies.get(i).distance(castle)), 2);
+            double wi = enemies.get(i).distance(portal);
+            sum += 1/(wt*wi);
+        }
+        return sum;
+    }
+    
+    public static Portal defendFromThis(Game game){
+        ArrayList<Location> enemies = getLGsAndElves(game);
+        ArrayList<Location> myPortals = new ArrayList<>();
+        Castle myCastle = game.getMyCastle();
+        for(Portal p: game.getMyPortals()){
+            myPortals.add(p.getLocation());
+            //p.location = new Location(100, 100);
+        }
+    
+        double max = 0;
+        int index = -1;
+        for(int i = 0; i < myPortals.size(); i++){
+            if (defendingPortalWeight(myCastle, enemies, myPortals.get(i)) > max){
+                max = attackingPortalWeight(myCastle, enemies, myPortals.get(i));
+                System.out.println(max);
+                index = i;
+            }
+        }
+        
+       return game.getMyPortals()[index];
+    }
 
 }
