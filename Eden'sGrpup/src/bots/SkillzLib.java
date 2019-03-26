@@ -498,5 +498,42 @@ public class SkillzLib {
 		return objects;
 	}
 	
+	/* 
+	 * @param game
+	 * @param elf
+	 * @return the optimal building for attacking
+	 * !!!!!!!!!!!!!!!!  CAN RETURN NULL  !!!!!!!!!!!!!!!!!!!!!!
+	 */
+	public static Building optimalBuildingToAttack(Game game, ElfWrapper elf) {
+		double max = (Double.MAX_VALUE)*(-1);
+		Building maxBuilding = null;
+		int halfDist,threats;
+		double cur,dist;
+		for(Building b:game.getEnemyPortals()) {
+			halfDist = (elf.elf.distance(b))/2;
+			Location theLoc = elf.elf.location.towards(b, halfDist);
+			threats = howManyObjectsAroundLocation(game, theLoc, game.getEnemyIceTrolls(), halfDist);
+			threats+=howManyObjectsAroundLocation(game, theLoc, game.getEnemyLivingElves(), halfDist);
+			dist = elf.elf.distance(b);
+			cur = (threats*-1)*Weights.CRITIC_CIRCLE_WEIGHT + (dist*-1)*Weights.DIST_WEIGHT;
+			if(cur>max) {
+				max = cur;
+				maxBuilding = b;
+			}
+		}
+		for(Building b:game.getEnemyManaFountains()) {
+			halfDist = (elf.elf.distance(b))/2;
+			Location theLoc = elf.elf.location.towards(b, halfDist);
+			threats = howManyObjectsAroundLocation(game, theLoc, game.getEnemyIceTrolls(), halfDist);
+			threats += howManyObjectsAroundLocation(game, theLoc, game.getEnemyLivingElves(), halfDist);
+			dist = elf.elf.distance(b);
+			cur = (threats*-1)*Weights.CRITIC_CIRCLE_WEIGHT + (dist*-1)*Weights.DIST_WEIGHT;
+			if(cur>max) {
+				max = cur;
+				maxBuilding = b;
+			}
+		}
+		return maxBuilding;
+	}
 
 }
